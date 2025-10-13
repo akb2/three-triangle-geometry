@@ -5,13 +5,15 @@ import { TriangleGeometryParameters } from "./models";
 export class TriangleGeometry extends BufferGeometry {
   parameters: TriangleGeometryParameters;
 
-  override type: string = "TriangleGeometry";
+  override type = "TriangleGeometry";
 
   /**
    * Convert a Vector3 array to a number array
    */
   private vector3ToNumber(...vectors: Vector3[]): number[] {
-    return vectors.map(({ x, y, z }) => ([x, y, z])).reduce((o, v) => ([...o, ...v]), []);
+    return vectors
+      .map(({ x, y, z }) => ([x, y, z]))
+      .reduce((o, v) => ([...o, ...v]), []);
   }
 
   /**
@@ -19,7 +21,7 @@ export class TriangleGeometry extends BufferGeometry {
    * @param [sideB] — Hypotenuse at the base.
    * @param [sideC] — Right cathetus (if not specified, it will be automatically calculated using the formula for right triangles).
    */
-  constructor(sideA: number, sideB: number, sideC?: number, segments?: number) {
+  constructor(sideA: number, sideB: number, sideC?: number, segments?: 1 | 2) {
     super();
     // Right cathetus
     sideC = sideC ?? Math.sqrt(Math.pow(sideA, 2) - Math.pow(sideB, 2));
@@ -27,26 +29,26 @@ export class TriangleGeometry extends BufferGeometry {
     // ? cX: Coordinate X of the angle: top
     // ? a: Coordinates of the angle: bottom left
     // ? b: Coordinates of the angle: bottom right
-    // ? c: Координаты угла: верхний
-    const cX: number = round((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideB), 10);
-    const cY: number = round(Math.sqrt((sideC * sideC) - (cX * cX)), 10);
-    const a: Vector3 = new Vector3(-sideB / 2, 0, 0);
-    const b: Vector3 = new Vector3(sideB / 2, 0, 0);
-    const c: Vector3 = new Vector3(cX - (sideB / 2), cY, 0);
-    const dirAB: Vector3 = new Vector3().subVectors(b, a).normalize();
-    const dirBC: Vector3 = new Vector3().subVectors(c, b).normalize();
-    const dirCA: Vector3 = new Vector3().subVectors(a, c).normalize();
+    // ? c: Coordinates of the angle: top
+    const cX = round((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideB), 10);
+    const cY = round(Math.sqrt((sideC * sideC) - (cX * cX)), 10);
+    const a = new Vector3(-sideB / 2, 0, 0);
+    const b = new Vector3(sideB / 2, 0, 0);
+    const c = new Vector3(cX - (sideB / 2), cY, 0);
+    const dirAB = new Vector3().subVectors(b, a).normalize();
+    const dirBC = new Vector3().subVectors(c, b).normalize();
+    const dirCA = new Vector3().subVectors(a, c).normalize();
     let uvs: number[] = [];
     let position: number[] = [];
     let normal: number[] = [];
     let indexes: number[] = [];
     // Parameters: two segments
     if (segments === 2) {
-      const d: Vector3 = new Vector3((a.x + b.x) / 2, (a.y + b.y) / 2, (a.z + b.z) / 2);
-      const dirAC: Vector3 = new Vector3().subVectors(c, a).normalize();
-      const dirDA: Vector3 = new Vector3().subVectors(a, d).normalize();
-      const dirDB: Vector3 = new Vector3().subVectors(b, d).normalize();
-      const dirCD: Vector3 = new Vector3().subVectors(d, c).normalize();
+      const d = new Vector3((a.x + b.x) / 2, (a.y + b.y) / 2, (a.z + b.z) / 2);
+      const dirAC = new Vector3().subVectors(c, a).normalize();
+      const dirDA = new Vector3().subVectors(a, d).normalize();
+      const dirDB = new Vector3().subVectors(b, d).normalize();
+      const dirCD = new Vector3().subVectors(d, c).normalize();
       // UVs, positions, normals, indexes
       uvs = [0, 0, 0.5, 0, 1, 0, cX / sideB, 1];
       position = this.vector3ToNumber(a, d, b, c);
