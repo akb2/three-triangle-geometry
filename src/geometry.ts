@@ -1,4 +1,5 @@
 import { round } from "@akb2/math";
+import { anyToFloat } from "@akb2/types-tools";
 import { BufferGeometry, Float32BufferAttribute, Vector3 } from "three";
 import { TriangleGeometryParameters } from "./models";
 
@@ -21,7 +22,7 @@ export class TriangleGeometry extends BufferGeometry {
    * @param [sideB] — Hypotenuse at the base.
    * @param [sideC] — Right cathetus (if not specified, it will be automatically calculated using the formula for right triangles).
    */
-  constructor(sideA: number, sideB: number, sideC?: number, segments?: 1 | 2) {
+  constructor(sideA: number, sideB: number, sideC?: number, segments: 1 | 2 = 1) {
     super();
     // Right cathetus
     sideC = sideC ?? Math.sqrt(Math.pow(sideA, 2) - Math.pow(sideB, 2));
@@ -75,9 +76,9 @@ export class TriangleGeometry extends BufferGeometry {
   // Generate TriangleGeometry from JSON
   static fromJSON(data: Record<string, number>): TriangleGeometry {
     return new TriangleGeometry(
-      data.sideA ?? 1,
-      data.sideB ?? 1,
-      data.sideC ?? 1,
+      anyToFloat(data.sideA, 1),
+      anyToFloat(data.sideB, 1),
+      anyToFloat(data.sideC, 1),
     );
   }
 }

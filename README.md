@@ -28,12 +28,12 @@ scene.add(mesh);
 new TriangleGeometry(sideA: number, sideB: number, sideC?: number, segments?: number);
 ```
 
-| Parameter   | Type                | Description                                                                           |
-|-------------|---------------------|---------------------------------------------------------------------------------------|
-| `sideA`     | `number`            | Left cathetus (vertical side).                                                        |
-| `sideB`     | `number`            | Base of the triangle (horizontal hypotenuse).                                         |
-| `sideC`     | `number` (optional) | Right cathetus. If not provided, it is automatically calculated for a right triangle. |
-| `segments`  | `number` (optional) | Number of horizontal segments. Default is `1`.                                        |
+| Parameter   | Type                  | Description                                                                           |
+|-------------|-----------------------|---------------------------------------------------------------------------------------|
+| `sideA`     | `number`              | Left cathetus.                                                                        |
+| `sideB`     | `number`              | Base of the triangle (hypotenuse).                                                    |
+| `sideC`     | `number` (optional)   | Right cathetus. If not provided, it is automatically calculated for a right triangle. |
+| `segments`  | `1` or `2` (optional) | Number of horizontal segments. Default is `1`.                                        |
 
 ## Example
 
@@ -93,6 +93,7 @@ export interface TriangleGeometryParameters {
 * [Three.js](https://www.npmjs.com/package/three)
 * [Three.js Types (@types/three)](https://www.npmjs.com/package/@types/three)
 * [AKB2 Math (@akb2/math)](https://www.npmjs.com/package/@akb2/math)
+* [AKB2 Types Tools (@akb2/types-tools)](https://www.npmjs.com/package/@akb2/types-tools)
 
 ## License
 
