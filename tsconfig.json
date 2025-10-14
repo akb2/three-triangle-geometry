@@ -8,7 +8,13 @@
     "skipLibCheck": true,
     "outDir": "dist",
     "rootDir": "src",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "types": [
+      "vite/client",
+      "@storybook/preact"
+    ]
   },
   "include": [
     "src"

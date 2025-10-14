@@ -1,7 +1,7 @@
 {
   "name": "@akb2/three-triangle-geometry",
-  "version": "1.1.0",
-  "description": "Triangle geomentry for three.js",
+  "version": "1.2.0",
+  "description": "Triangle geometry for three.js",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -40,18 +40,23 @@
   "devDependencies": {
     "@akb2/math": "^1.0",
     "@akb2/types-tools": "^1.0",
+    "@storybook/preact-vite": "^9.1.10",
     "@types/jest": "^30.0.0",
     "@types/three": "^0.159.0",
     "jest": "^30.2.0",
+    "preact": "^10.27.2",
+    "storybook": "^9.1.10",
     "three": "^0.159.0",
     "ts-jest": "^29.4.5",
     "tsup": "^8.0.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.9.3",
+    "vite": "^7.1.10"
   },
   "scripts": {
     "build": "tsup src/index.ts --dts --format esm,cjs --clean --out-dir dist",
     "prepublishOnly": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "storybook dev -p 6006"
   },
   "jest": {
     "preset": "ts-jest",
