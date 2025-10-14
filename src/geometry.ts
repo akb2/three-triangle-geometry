@@ -18,14 +18,12 @@ export class TriangleGeometry extends BufferGeometry {
   }
 
   /**
-   * @param [sideA] — Left cathetus.
-   * @param [sideB] — Hypotenuse at the base.
-   * @param [sideC] — Right cathetus (if not specified, it will be automatically calculated using the formula for right triangles).
+   * @param [sideA] — First side.
+   * @param [sideB] — Second side.
+   * @param [sideC] — Third side (if not specified, it will be from sideA).
    */
-  constructor(sideA: number, sideB: number, sideC?: number, segments: 1 | 2 = 1) {
+  constructor(sideA: number, sideB: number, sideC: number = sideA, segments: 1 | 2 = 1) {
     super();
-    // Right cathetus
-    sideC = sideC ?? Math.sqrt(Math.pow(sideA, 2) - Math.pow(sideB, 2));
     // Angles
     // ? cX: Coordinate X of the angle: top
     // ? a: Coordinates of the angle: bottom left

@@ -31,8 +31,8 @@ new TriangleGeometry(sideA: number, sideB: number, sideC?: number, segments?: nu
 | Parameter   | Type                  | Description                                                                           |
 |-------------|-----------------------|---------------------------------------------------------------------------------------|
 | `sideA`     | `number`              | Left cathetus.                                                                        |
-| `sideB`     | `number`              | Base of the triangle (hypotenuse).                                                    |
-| `sideC`     | `number` (optional)   | Right cathetus. If not provided, it is automatically calculated for a right triangle. |
+| `sideB`     | `number`              | Base of the triangle.                                                                 |
+| `sideC`     | `number` (optional)   | Right cathetus. If not provided, it will be equal to sideA.                           |
 | `segments`  | `1` or `2` (optional) | Number of horizontal segments. Default is `1`.                                        |
 
 ## Example
@@ -71,12 +71,7 @@ export interface TriangleGeometryParameters {
 
 ## Internal logic
 
-* Computes missing sideC if not provided:
-
-  ```math
-  sideC = sqrt(sideA² - sideB²)
-  ```
-
+* Sets missing sideC if not provided as a sideA value:
 * Calculates vertex coordinates (a, b, c) using trigonometric formulas.
 * Automatically builds:
   * positions
