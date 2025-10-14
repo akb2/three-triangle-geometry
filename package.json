@@ -1,6 +1,6 @@
 {
   "name": "@akb2/three-triangle-geometry",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Triangle geometry for three.js",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -53,7 +53,7 @@
     "vite": "^7.1.10"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm,cjs --clean --out-dir dist",
+    "build": "tsup src/index.ts --dts --format esm,cjs --clean --out-dir dist --minify",
     "prepublishOnly": "npm run build",
     "test": "jest",
     "storybook": "storybook dev -p 6006"
